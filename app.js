@@ -35,11 +35,6 @@ store.on("error",()=>{
 })
 
 const sessionOptions={
-    store:MongoStore.create({
-        mongoUrl:process.env.ATLASDB_URL,
-        secret:process.env.SECRET,
-        touchAfter:24*3600,
-    }),
     secret:process.env.SECRET ,
     resave:false,
     saveUninitialized:false,
@@ -47,8 +42,20 @@ const sessionOptions={
         expires:Date.now()+7*24*60*1000,
         maxAge:7*24*60*1000,
         httpOnly:true
+    },
+    store:MongoStore.create({
+        mongoUrl:process.env.ATLASDB_URL,
+        autoRemove:"disabled"
+        // touchAfter:24*3600,
+    },
+    function (error){
+        console.log(err||"Connection established with MongoStore")
     }
+     
+    ),
+    
 };
+
 
 
 
