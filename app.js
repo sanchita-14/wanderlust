@@ -94,7 +94,7 @@ async function main(){
     await mongoose.connect(dbUrl)
 }
 
-router.get('/', (req,res)=>{res.redirect('/listings')})
+router.get("/", (req,res)=>{res.redirect('/listings')})
 
 
 //index-route
